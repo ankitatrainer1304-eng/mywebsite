@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ankita | ICF Certified Communication & Behaviour Coach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --brown-deep:  #F5EDE0;
+  --brown-dark:  #EDE0CE;
+  --brown-mid:   #D9C4A8;
+  --brown-warm:  #C4A882;
+  --orange:      #B5441A;
+  --orange-light:#D4622A;
+  --orange-glow: #E8875A;
+  --cream:       #2C1A0A;
+  --cream-dark:  #3D2410;
+  --gold:        #8A5C10;
+  --gold-light:  #A87020;
+  --white:       #FFFAF5;
+  --text-muted:  #7A5C42;
+  --glass:       rgba(0,0,0,0.04);
+  --glass-b:     rgba(120,70,30,0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--brown-deep);
+  color: var(--cream);
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--brown-mid); }
+::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 2px; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 6%;
+  transition: all 0.4s;
+}
+nav.scrolled {
+  background: rgba(245,237,224,0.95);
+  backdrop-filter: blur(20px);
+  padding: 14px 6%;
+  border-bottom: 1px solid rgba(181,68,26,0.18);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 700;
+  color: var(--cream); text-decoration: none; letter-spacing: 0.02em;
+}
+.nav-logo span { color: var(--orange); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  color: var(--text-muted); text-decoration: none;
+  font-size: 0.82rem; font-weight: 500; letter-spacing: 0.06em;
+  text-transform: uppercase; transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--orange-light); }
+.nav-cta {
+  background: var(--orange); color: var(--white);
+  padding: 10px 26px; border-radius: 2px;
+  font-weight: 600; font-size: 0.82rem; letter-spacing: 0.06em;
+  text-decoration: none; text-transform: uppercase;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.nav-cta:hover { background: var(--orange-light); box-shadow: 0 6px 24px rgba(212,98,42,0.4); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 120px 6% 80px;
+  position: relative; overflow: hidden;
+  gap: 60px;
+}
+
+/* ambient bg */
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 70% 50%, rgba(181,68,26,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 10% 80%, rgba(168,112,32,0.08) 0%, transparent 60%),
+    var(--brown-deep);
+}
+.hero-noise {
+  position: absolute; inset: 0; z-index: 0; opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+/* floating ring ornament */
+.hero-ring {
+  position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+  width: 520px; height: 520px; border-radius: 50%; z-index: 0;
+  border: 1px solid rgba(181,68,26,0.2);
+  animation: ringPulse 6s ease-in-out infinite;
+}
+.hero-ring::before {
+  content: ''; position: absolute; inset: 30px; border-radius: 50%;
+  border: 1px solid rgba(168,112,32,0.15);
+}
+.hero-ring::after {
+  content: ''; position: absolute; inset: 70px; border-radius: 50%;
+  border: 1px dashed rgba(181,68,26,0.12);
+}
+@keyframes ringPulse {
+  0%,100%{transform:translateY(-50%) scale(1); opacity:1}
+  50%{transform:translateY(-50%) scale(1.04); opacity:0.7}
+}
+
+.orb {
+  position: absolute; border-radius: 50%; filter: blur(100px);
+  animation: floatOrb 12s ease-in-out infinite; pointer-events: none; z-index: 0;
+}
+.orb1 { width:380px;height:380px;background:rgba(181,68,26,0.1);top:-80px;right:10%;animation-delay:0s; }
+.orb2 { width:280px;height:280px;background:rgba(168,112,32,0.08);bottom:5%;left:5%;animation-delay:-5s; }
+@keyframes floatOrb {
+  0%,100%{transform:translate(0,0)}
+  50%{transform:translate(20px,-30px)}
+}
+
+.hero-left { position: relative; z-index: 1; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 1px solid rgba(212,98,42,0.4);
+  background: rgba(212,98,42,0.08);
+  padding: 8px 20px; border-radius: 2px; margin-bottom: 28px;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--orange-light);
+  animation: fadeUp 0.8s ease both;
+}
+.badge-dot {
+  width: 6px; height: 6px; background: var(--orange); border-radius: 50%;
+  animation: blink 2s ease infinite;
+}
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:0.3} }
+
+h1.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 5.5vw, 5rem);
+  font-weight: 700; line-height: 1.06;
+  margin-bottom: 24px; letter-spacing: -0.01em;
+  animation: fadeUp 0.8s ease 0.15s both;
+}
+h1.hero-title em {
+  font-style: italic; color: var(--orange-light);
+  display: block;
+}
+h1.hero-title .morph-wrap {
+  display: inline-block; overflow: hidden; vertical-align: bottom;
+}
+.morph-word {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--orange), var(--gold-light));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.hero-sub {
+  font-size: 1.05rem; color: var(--text-muted); line-height: 1.8;
+  max-width: 480px; margin-bottom: 40px;
+  animation: fadeUp 0.8s ease 0.3s both;
+}
+
+.hero-actions {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  animation: fadeUp 0.8s ease 0.45s both;
+}
+.btn-primary {
+  background: var(--orange); color: var(--white);
+  padding: 15px 34px; border-radius: 2px;
+  font-weight: 600; font-size: 0.88rem; letter-spacing: 0.06em;
+  text-decoration: none; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+  box-shadow: 0 4px 20px rgba(212,98,42,0.3);
+}
+.btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(212,98,42,0.45); }
+.btn-ghost {
+  border: 1px solid rgba(255,220,180,0.2); color: var(--cream-dark);
+  padding: 15px 34px; border-radius: 2px;
+  font-weight: 500; font-size: 0.88rem; letter-spacing: 0.06em;
+  text-decoration: none; text-transform: uppercase;
+  transition: border-color 0.3s, color 0.3s;
+}
+.btn-ghost:hover { border-color: var(--orange-light); color: var(--orange-light); }
+
+/* hero right — photo card */
+.hero-right {
+  position: relative; z-index: 1;
+  display: flex; justify-content: center;
+  animation: fadeUp 1s ease 0.5s both;
+}
+.photo-frame {
+  width: 360px; height: 460px; position: relative;
+}
+.photo-frame::before {
+  content: ''; position: absolute; inset: -12px;
+  border: 1px solid rgba(212,98,42,0.2); border-radius: 2px;
+}
+.photo-frame::after {
+  content: '';
+  position: absolute; bottom: -20px; right: -20px;
+  width: 120px; height: 120px;
+  background: rgba(212,98,42,0.12);
+  border-radius: 2px;
+  z-index: -1;
+}
+.photo-placeholder {
+  width: 100%; height: 100%;
+  background: linear-gradient(145deg, #EDD9C0, #D9C0A0);
+  border-radius: 2px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 14px;
+  border: 1px solid rgba(181,68,26,0.2);
+}
+.photo-initials {
+  width: 90px; height: 90px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), var(--gold));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem; font-weight: 700; color: var(--white);
+}
+.photo-note {
+  font-size: 0.78rem; color: var(--text-muted); text-align: center; padding: 0 20px;
+}
+
+/* floating badge on photo */
+.float-badge {
+  position: absolute; left: -28px; bottom: 60px;
+  background: var(--white); border: 1px solid rgba(181,68,26,0.3);
+  padding: 14px 20px; border-radius: 2px;
+  animation: floatBadge 4s ease-in-out infinite;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+@keyframes floatBadge { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.float-badge-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-weight: 700; color: var(--orange-light); line-height: 1;
+}
+.float-badge-label { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+
+.float-badge2 {
+  position: absolute; right: -24px; top: 60px;
+  background: var(--white); border: 1px solid rgba(168,112,32,0.3);
+  padding: 14px 20px; border-radius: 2px;
+  animation: floatBadge 4s ease-in-out infinite; animation-delay: -2s;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+
+/* hero stats strip */
+.hero-stats {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(220,200,175,0.75); backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(181,68,26,0.2);
+  display: flex; justify-content: center; gap: 0;
+  z-index: 1;
+}
+.h-stat {
+  flex: 1; max-width: 260px; padding: 22px 40px;
+  border-right: 1px solid rgba(212,98,42,0.15);
+  text-align: center;
+}
+.h-stat:last-child { border-right: none; }
+.h-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem; font-weight: 700; color: var(--orange-light); line-height: 1;
+}
+.h-stat-label { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── SECTION COMMONS ── */
+.section-eyebrow {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--orange); margin-bottom: 14px;
+}
+.section-eyebrow::before { content:''; flex: 0 0 28px; height: 1px; background: var(--orange); }
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  font-weight: 700; line-height: 1.12; margin-bottom: 18px; letter-spacing: -0.01em;
+}
+.section-title em { font-style: italic; color: var(--orange-light); }
+.section-desc { color: var(--text-muted); max-width: 580px; line-height: 1.85; font-size: 1rem; }
+
+/* ── ABOUT ── */
+#about {
+  padding: 110px 6%;
+  background: var(--brown-dark);
+  position: relative; overflow: hidden;
+}
+#about::before {
+  content:''; position: absolute; top:0; left:0; right:0; height:3px;
+  background: linear-gradient(90deg, transparent, var(--orange-light), var(--gold-light), transparent);
+}
+
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+
+/* left: photo + cert stack */
+.about-visual { display: flex; flex-direction: column; gap: 24px; }
+.about-photo-card {
+  background: var(--white); border: 1px solid rgba(181,68,26,0.12);
+  border-radius: 2px; padding: 40px 36px; text-align: center;
+}
+.about-avatar {
+  width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 18px;
+  background: linear-gradient(135deg, var(--orange), var(--gold));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem; font-weight: 700; color: var(--white);
+  border: 3px solid rgba(212,98,42,0.3);
+}
+.about-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem; font-weight: 700; color: var(--cream); margin-bottom: 6px;
+}
+.about-title-tag { font-size: 0.82rem; color: var(--orange-light); margin-bottom: 20px; }
+.about-langs {
+  display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
+}
+.lang-pill {
+  background: rgba(212,98,42,0.1); border: 1px solid rgba(212,98,42,0.25);
+  padding: 4px 14px; border-radius: 2px;
+  font-size: 0.75rem; color: var(--orange-light); font-weight: 600;
+}
+
+.cert-stack { display: flex; flex-direction: column; gap: 12px; }
+.cert-item {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--white); border: 1px solid rgba(181,68,26,0.12);
+  padding: 16px 20px; border-radius: 2px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.cert-item:hover { border-color: rgba(181,68,26,0.4); transform: translateX(5px); }
+.cert-icon {
+  width: 38px; height: 38px; border-radius: 2px; flex-shrink: 0;
+  background: linear-gradient(135deg, rgba(212,98,42,0.25), rgba(201,149,42,0.15));
+  display: flex; align-items: center; justify-content: center; font-size: 1rem;
+}
+.cert-name { font-size: 0.88rem; font-weight: 600; color: var(--cream); line-height: 1.3; }
+.cert-body { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+
+/* right: about text */
+.about-text {}
+.about-story {
+  font-size: 1rem; color: var(--text-muted); line-height: 1.9; margin-bottom: 32px;
+}
+.about-story strong { color: var(--cream); font-weight: 600; }
+
+.specialisms { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 36px; }
+.spec-item {
+  background: var(--white); border: 1px solid rgba(181,68,26,0.12);
+  padding: 18px 16px; border-radius: 2px;
+  display: flex; align-items: flex-start; gap: 10px;
+  transition: border-color 0.3s;
+}
+.spec-item:hover { border-color: rgba(181,68,26,0.35); }
+.spec-icon { font-size: 1.1rem; margin-top: 1px; }
+.spec-label { font-size: 0.88rem; font-weight: 600; color: var(--cream); line-height: 1.4; }
+.spec-sub { font-size: 0.76rem; color: var(--text-muted); margin-top: 3px; }
+
+.delivery-row {
+  display: flex; gap: 14px; flex-wrap: wrap;
+}
+.delivery-pill {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(201,149,42,0.1); border: 1px solid rgba(201,149,42,0.25);
+  padding: 10px 18px; border-radius: 2px;
+  font-size: 0.82rem; color: var(--gold-light); font-weight: 600;
+}
+
+/* ── TIPS ── */
+#tips { padding: 110px 6%; position: relative; overflow: hidden; }
+.tips-header { text-align: center; margin-bottom: 64px; }
+.tips-header .section-eyebrow { justify-content: center; }
+.tips-header .section-eyebrow::before { display: none; }
+.tips-header .section-desc { margin: 0 auto; }
+
+.tips-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.tip-card {
+  background: var(--white); padding: 42px 32px;
+  position: relative; overflow: hidden; cursor: default;
+  transition: background 0.3s, box-shadow 0.3s;
+  border: 1px solid rgba(181,68,26,0.1);
+}
+.tip-card:hover { background: #FFF4EA; box-shadow: 0 8px 32px rgba(181,68,26,0.08); }
+.tip-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--orange), var(--gold));
+  transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+}
+.tip-card:hover::after { transform: scaleX(1); }
+
+.tip-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem; font-weight: 700; color: rgba(212,98,42,0.12);
+  line-height: 1; margin-bottom: 4px;
+  transition: color 0.3s;
+}
+.tip-card:hover .tip-num { color: rgba(212,98,42,0.25); }
+.tip-icon { font-size: 1.6rem; margin-bottom: 14px; }
+.tip-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem; font-weight: 700; margin-bottom: 10px; color: var(--cream);
+}
+.tip-body { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; }
+.tip-tag {
+  display: inline-block; margin-top: 18px;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+  color: var(--orange); text-transform: uppercase;
+}
+
+/* ── PROGRAMS ── */
+#programs {
+  padding: 110px 6%;
+  background: var(--brown-dark);
+}
+.programs-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; flex-wrap: wrap; gap: 20px; }
+
+.programs-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; }
+.prog-card {
+  background: var(--white); border: 1px solid rgba(181,68,26,0.12);
+  padding: 44px 38px; position: relative; overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.prog-card:hover { border-color: rgba(181,68,26,0.35); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(181,68,26,0.1); }
+.prog-card.featured {
+  border-color: rgba(181,68,26,0.25);
+  background: linear-gradient(145deg, #FFF0E4, #FAF0E0);
+}
+.prog-eyebrow {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--orange); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.prog-eyebrow::before { content:''; width: 20px; height: 1px; background: var(--orange); }
+.prog-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 700; color: var(--cream);
+  margin-bottom: 12px; line-height: 1.25;
+}
+.prog-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px; }
+.prog-features { display: flex; flex-direction: column; gap: 8px; }
+.prog-feat {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.85rem; color: var(--cream-dark);
+}
+.prog-feat::before { content: '→'; color: var(--orange); font-size: 0.8rem; flex-shrink: 0; }
+.prog-bg {
+  position: absolute; right: -10px; bottom: -30px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 9rem; font-weight: 700; color: rgba(255,220,180,0.03);
+  line-height: 1; pointer-events: none;
+}
+
+/* ── TESTIMONIALS ── */
+#testimonials { padding: 110px 6%; }
+.testi-header { text-align: center; margin-bottom: 60px; }
+.testi-header .section-eyebrow { justify-content: center; }
+.testi-header .section-eyebrow::before { display: none; }
+
+/* open grid — editable by Ankita */
+.testi-open-note {
+  text-align: center; padding: 60px 40px;
+  background: var(--white); border: 1px dashed rgba(181,68,26,0.3);
+  border-radius: 2px; margin-bottom: 40px;
+}
+.testi-open-icon { font-size: 2.5rem; margin-bottom: 16px; }
+.testi-open-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 700; color: var(--cream); margin-bottom: 10px;
+}
+.testi-open-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.8; max-width: 500px; margin: 0 auto 24px; }
+.testi-add-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; border: 1px solid var(--orange);
+  color: var(--orange); padding: 12px 28px; border-radius: 2px;
+  font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; cursor: pointer; transition: background 0.3s;
+}
+.testi-add-btn:hover { background: rgba(212,98,42,0.1); }
+
+/* sample placeholder cards */
+.testi-sample-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; opacity: 0.5; }
+.testi-card-ph {
+  background: var(--white); border: 1px solid rgba(181,68,26,0.1);
+  padding: 32px 26px; border-radius: 2px;
+}
+.ph-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 14px; }
+.ph-bar { height: 8px; border-radius: 1px; background: rgba(181,68,26,0.08); margin-bottom: 8px; }
+.ph-bar.short { width: 60%; }
+.ph-bar.med { width: 80%; }
+.ph-bar.long { width: 95%; }
+.ph-author { display: flex; align-items: center; gap: 10px; margin-top: 20px; }
+.ph-avatar { width: 36px; height: 36px; border-radius: 50%; background: rgba(212,98,42,0.2); flex-shrink: 0; }
+.ph-info .ph-bar { margin: 4px 0 0; height: 6px; }
+
+/* ── CONTACT ── */
+#contact {
+  padding: 110px 6%;
+  background: var(--brown-dark);
+  position: relative; overflow: hidden;
+}
+#contact::after {
+  content: 'CONNECT';
+  position: absolute; bottom: -50px; right: -30px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10rem; font-weight: 700; color: rgba(255,220,180,0.025);
+  line-height: 1; pointer-events: none;
+}
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+
+.contact-left {}
+.contact-channels { margin-top: 36px; display: flex; flex-direction: column; gap: 14px; }
+.ch-item {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--white); border: 1px solid rgba(181,68,26,0.12);
+  padding: 18px 22px; border-radius: 2px;
+  text-decoration: none; transition: border-color 0.3s, transform 0.3s;
+}
+.ch-item:hover { border-color: rgba(181,68,26,0.4); transform: translateX(5px); }
+.ch-icon {
+  width: 44px; height: 44px; border-radius: 2px; flex-shrink: 0;
+  background: linear-gradient(135deg, rgba(212,98,42,0.25), rgba(201,149,42,0.15));
+  display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+}
+.ch-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 3px; }
+.ch-val { font-weight: 600; font-size: 0.95rem; color: var(--cream); }
+
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.fg { display: flex; flex-direction: column; gap: 7px; }
+.fg label { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase; }
+.fg input, .fg textarea, .fg select {
+  background: var(--white); border: 1px solid rgba(181,68,26,0.15);
+  border-radius: 2px; padding: 13px 16px;
+  color: var(--cream); font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem; outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.fg input:focus, .fg textarea:focus, .fg select:focus {
+  border-color: rgba(181,68,26,0.5);
+  box-shadow: 0 0 0 3px rgba(181,68,26,0.08);
+}
+.fg input::placeholder, .fg textarea::placeholder { color: rgba(122,92,66,0.4); }
+.fg textarea { resize: vertical; min-height: 110px; }
+.fg select option { background: var(--white); color: var(--cream); }
+.btn-send {
+  background: var(--orange); color: var(--white);
+  padding: 16px; border-radius: 2px;
+  font-weight: 700; font-size: 0.88rem; letter-spacing: 0.08em;
+  text-transform: uppercase; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.btn-send:hover { background: var(--orange-light); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212,98,42,0.4); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 36px 6%;
+  border-top: 1px solid rgba(181,68,26,0.15);
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+}
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; }
+.footer-logo span { color: var(--orange); }
+.footer-copy { font-size: 0.78rem; color: var(--text-muted); }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { font-size: 0.78rem; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+.footer-links a:hover { color: var(--orange-light); }
+
+/* sticky cta */
+.sticky-ring {
+  position: fixed; bottom: 28px; right: 28px; z-index: 99;
+}
+.sticky-btn {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--orange); color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; text-decoration: none;
+  box-shadow: 0 8px 28px rgba(212,98,42,0.5);
+  animation: fadeUp 1s ease 2s both;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.sticky-btn:hover { transform: scale(1.1); box-shadow: 0 12px 36px rgba(212,98,42,0.6); }
+.sticky-ring::before {
+  content: ''; position: absolute; inset: -6px; border-radius: 50%;
+  border: 1.5px solid rgba(212,98,42,0.4);
+  animation: ringAnim 2s ease infinite;
+}
+@keyframes ringAnim { 0%{transform:scale(1);opacity:1} 100%{transform:scale(1.6);opacity:0} }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.75s ease, transform 0.75s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 920px) {
+  #hero { grid-template-columns: 1fr; padding-bottom: 140px; }
+  .hero-right { display: none; }
+  .hero-stats { flex-wrap: wrap; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .programs-grid { grid-template-columns: 1fr; }
+  .tips-grid { grid-template-columns: 1fr 1fr; }
+  .testi-sample-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .specialisms { grid-template-columns: 1fr; }
+}
+@media (max-width: 580px) {
+  .tips-grid { grid-template-columns: 1fr; }
+  section { padding: 70px 5% !important; }
+  h1.hero-title { font-size: 2.6rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#hero" class="nav-logo">Ankita<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#tips">Tips</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book a Session</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-ring"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+
+  <div class="hero-left">
+    <div class="hero-badge"><span class="badge-dot"></span>ICF Certified Coach · International Trainer</div>
+    <h1 class="hero-title">
+      Speak with<br>
+      <em>Confidence.</em>
+      Lead with <span class="morph-word" id="morphWord">Impact.</span>
+    </h1>
+    <p class="hero-sub">
+      I'm Ankita — an internationally certified communication & behaviour coach helping corporate professionals, sales teams and leaders unlock the power of purposeful communication.
+    </p>
+    <div class="hero-actions">
+      <a href="#programs" class="btn-primary">Explore Programs →</a>
+      <a href="#contact" class="btn-ghost">Let's Connect</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="photo-frame">
+      <div class="photo-placeholder">
+        <div class="photo-initials">A</div>
+        <p class="photo-note">Your photo will appear here<br><small style="color:var(--text-muted)">Share it anytime to update</small></p>
+      </div>
+      <div class="float-badge">
+        <div class="float-badge-num">100+</div>
+        <div class="float-badge-label">Professionals Trained</div>
+      </div>
+      <div class="float-badge2">
+        <div class="float-badge-num" style="color:var(--gold-light);">ICF</div>
+        <div class="float-badge-label">Certified Coach</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="h-stat">
+      <div class="h-stat-num" data-count="100">0+</div>
+      <div class="h-stat-label">Professionals Trained</div>
+    </div>
+    <div class="h-stat">
+      <div class="h-stat-num">3+</div>
+      <div class="h-stat-label">Years Experience</div>
+    </div>
+    <div class="h-stat">
+      <div class="h-stat-num">2</div>
+      <div class="h-stat-label">Languages — EN & HI</div>
+    </div>
+    <div class="h-stat">
+      <div class="h-stat-num">🌐</div>
+      <div class="h-stat-label">Online & In-Person</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+
+    <div class="about-visual reveal">
+      <div class="about-photo-card">
+        <div class="about-avatar">A</div>
+        <div class="about-name">Ankita</div>
+        <div class="about-title-tag">Communication & Behaviour Trainer · Coach</div>
+        <div class="about-langs">
+          <span class="lang-pill">English</span>
+          <span class="lang-pill">Hindi</span>
+          <span class="lang-pill">Pan-India</span>
+          <span class="lang-pill">Online & In-Person</span>
+        </div>
+      </div>
+
+      <div class="cert-stack">
+        <div class="cert-item">
+          <div class="cert-icon">🏅</div>
+          <div>
+            <div class="cert-name">ICF Certified Coach</div>
+            <div class="cert-body">International Coaching Federation — globally recognised credential</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">🎓</div>
+          <div>
+            <div class="cert-name">International Certified Trainer</div>
+            <div class="cert-body">Certified in Communication & Behaviour facilitation</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">🧩</div>
+          <div>
+            <div class="cert-name">Sales Communication Specialist</div>
+            <div class="cert-body">Trained 100+ sales professionals across industries</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">🌱</div>
+          <div>
+            <div class="cert-name">Behaviour & Soft Skills Expert</div>
+            <div class="cert-body">Leadership behaviour, mindset & interpersonal dynamics</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-text reveal">
+      <div class="section-eyebrow">About Me</div>
+      <h2 class="section-title">Turning <em>Conversations</em> Into Opportunities</h2>
+      <p class="about-story">
+        I'm Ankita — an <strong>internationally certified communication trainer and ICF certified coach</strong> passionate about helping professionals speak with clarity, lead with confidence, and build authentic connections that drive results.
+        <br><br>
+        With hands-on experience training <strong>sales teams, startup founders, and corporate professionals</strong>, I bring a deeply practical approach — combining behavioural science, real-world communication frameworks, and personalised coaching to create lasting change.
+        <br><br>
+        I deliver sessions both <strong>online and in-person</strong>, in <strong>English and Hindi</strong>, making my programs accessible and impactful across India and beyond.
+      </p>
+
+      <div class="specialisms">
+        <div class="spec-item">
+          <span class="spec-icon">💬</span>
+          <div>
+            <div class="spec-label">Sales Communication</div>
+            <div class="spec-sub">Convert conversations into deals</div>
+          </div>
+        </div>
+        <div class="spec-item">
+          <span class="spec-icon">🧠</span>
+          <div>
+            <div class="spec-label">Leadership & Behaviour</div>
+            <div class="spec-sub">Lead with presence & purpose</div>
+          </div>
+        </div>
+        <div class="spec-item">
+          <span class="spec-icon">⭐</span>
+          <div>
+            <div class="spec-label">Soft Skills Training</div>
+            <div class="spec-sub">The skills that build careers</div>
+          </div>
+        </div>
+        <div class="spec-item">
+          <span class="spec-icon">🚀</span>
+          <div>
+            <div class="spec-label">Startup & Corporate</div>
+            <div class="spec-sub">Tailored for your team's stage</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="delivery-row">
+        <div class="delivery-pill">🎥 Online Sessions</div>
+        <div class="delivery-pill">🏢 In-Person Workshops</div>
+        <div class="delivery-pill">🇮🇳 Pan-India</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIPS -->
+<section id="tips">
+  <div class="tips-header reveal">
+    <div class="section-eyebrow">Communication Tips</div>
+    <h2 class="section-title">6 Rules That <em>Transform</em><br>Every Conversation</h2>
+    <p class="section-desc">Practical, proven techniques Ankita uses in every training — start applying them today.</p>
+  </div>
+
+  <div class="tips-grid">
+    <div class="tip-card reveal">
+      <div class="tip-num">01</div>
+      <div class="tip-icon">⏸️</div>
+      <h3 class="tip-title">Master the Power Pause</h3>
+      <p class="tip-body">A 2-second pause before answering signals confidence, gives you time to think, and commands attention in any room — boardroom or Zoom.</p>
+      <span class="tip-tag">Presence</span>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-num">02</div>
+      <div class="tip-icon">🎯</div>
+      <h3 class="tip-title">Lead With Your Message</h3>
+      <p class="tip-body">Open with your key point first. Corporate audiences decide within 7 seconds whether to keep listening — don't make them wait for the point.</p>
+      <span class="tip-tag">Clarity</span>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-num">03</div>
+      <div class="tip-icon">🔊</div>
+      <h3 class="tip-title">Tone Speaks Louder</h3>
+      <p class="tip-body">55% of communication is non-verbal. Match your vocal tone and pace to your message — warmth, authority, urgency are all set by how you say it.</p>
+      <span class="tip-tag">Vocal Power</span>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-num">04</div>
+      <div class="tip-icon">👂</div>
+      <h3 class="tip-title">Listen to Understand</h3>
+      <p class="tip-body">Stop listening to reply — start listening to understand. Reflect back, ask one clarifying question, and let the other person feel truly heard.</p>
+      <span class="tip-tag">Empathy</span>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-num">05</div>
+      <div class="tip-icon">💡</div>
+      <h3 class="tip-title">The "So What" Test</h3>
+      <p class="tip-body">Before every key point ask: "so what does this mean for my audience?" Tie every fact to a benefit — especially critical in sales conversations.</p>
+      <span class="tip-tag">Sales Communication</span>
+    </div>
+    <div class="tip-card reveal">
+      <div class="tip-num">06</div>
+      <div class="tip-icon">🧍</div>
+      <h3 class="tip-title">Own Your Space</h3>
+      <p class="tip-body">Plant your feet, open your posture, and hold eye contact 70% of the time. Your body language speaks before your first word lands.</p>
+      <span class="tip-tag">Body Language</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="programs-header">
+    <div>
+      <div class="section-eyebrow">My Work</div>
+      <h2 class="section-title">Programs Built for <em>Real Results</em></h2>
+    </div>
+    <a href="#contact" class="btn-ghost">Enquire Now →</a>
+  </div>
+
+  <div class="programs-grid">
+    <div class="prog-card featured reveal">
+      <div class="prog-eyebrow">Flagship</div>
+      <h3 class="prog-title">Sales Communication Mastery</h3>
+      <p class="prog-desc">A high-impact workshop designed specifically for sales teams and startup professionals. Learn to open conversations powerfully, handle objections with confidence, and close with authenticity — delivered online or in-person in English & Hindi.</p>
+      <div class="prog-features">
+        <div class="prog-feat">Persuasive communication frameworks</div>
+        <div class="prog-feat">Objection handling & difficult conversations</div>
+        <div class="prog-feat">Client rapport & trust building</div>
+        <div class="prog-feat">Confidence under pressure</div>
+        <div class="prog-feat">Online & in-person delivery</div>
+      </div>
+      <div class="prog-bg">SALES</div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:24px;">
+      <div class="prog-card reveal">
+        <div class="prog-eyebrow">Behaviour Coaching</div>
+        <h3 class="prog-title">Leadership & Behaviour Program</h3>
+        <p class="prog-desc">1-on-1 or group coaching for professionals looking to shift limiting behaviour patterns, develop executive presence, and lead with greater impact.</p>
+        <div class="prog-features">
+          <div class="prog-feat">Behaviour pattern analysis</div>
+          <div class="prog-feat">Mindset & emotional intelligence</div>
+          <div class="prog-feat">Personal leadership presence</div>
+        </div>
+        <div class="prog-bg">LEAD</div>
+      </div>
+
+      <div class="prog-card reveal">
+        <div class="prog-eyebrow">Corporate Training</div>
+        <h3 class="prog-title">Soft Skills for Corporate Teams</h3>
+        <p class="prog-desc">Customised soft skills sessions for corporates and startups — covering communication, teamwork, professional etiquette, and interpersonal dynamics.</p>
+        <div class="prog-features">
+          <div class="prog-feat">Workplace communication</div>
+          <div class="prog-feat">Team dynamics & collaboration</div>
+          <div class="prog-feat">Pan-India delivery</div>
+        </div>
+        <div class="prog-bg">SOFT</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testi-header reveal">
+    <div class="section-eyebrow">Testimonials</div>
+    <h2 class="section-title">What Professionals <em>Say</em></h2>
+    <p class="section-desc" style="margin:0 auto;">Real words from real people Ankita has worked with.</p>
+  </div>
+
+  <div class="testi-open-note reveal">
+    <div class="testi-open-icon">✍️</div>
+    <h3 class="testi-open-title">Testimonials Coming Soon</h3>
+    <p class="testi-open-desc">
+      This section is reserved for your real client testimonials. Share the feedback you've received — via WhatsApp messages, emails, or LinkedIn recommendations — and I'll add them here beautifully formatted.
+    </p>
+    <button class="testi-add-btn" onclick="this.textContent='✓ Will be added when you share!'">+ Add Your Testimonials</button>
+  </div>
+
+  <!-- placeholder cards to show the layout -->
+  <div class="testi-sample-grid reveal">
+    <div class="testi-card-ph">
+      <div class="ph-stars">★★★★★</div>
+      <div class="ph-bar long"></div>
+      <div class="ph-bar med"></div>
+      <div class="ph-bar short"></div>
+      <div class="ph-author">
+        <div class="ph-avatar"></div>
+        <div>
+          <div class="ph-bar" style="width:80px;height:8px"></div>
+          <div class="ph-bar" style="width:60px;height:6px;margin-top:5px"></div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card-ph">
+      <div class="ph-stars">★★★★★</div>
+      <div class="ph-bar med"></div>
+      <div class="ph-bar long"></div>
+      <div class="ph-bar short"></div>
+      <div class="ph-author">
+        <div class="ph-avatar"></div>
+        <div>
+          <div class="ph-bar" style="width:80px;height:8px"></div>
+          <div class="ph-bar" style="width:60px;height:6px;margin-top:5px"></div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card-ph">
+      <div class="ph-stars">★★★★★</div>
+      <div class="ph-bar long"></div>
+      <div class="ph-bar short"></div>
+      <div class="ph-bar med"></div>
+      <div class="ph-author">
+        <div class="ph-avatar"></div>
+        <div>
+          <div class="ph-bar" style="width:80px;height:8px"></div>
+          <div class="ph-bar" style="width:60px;height:6px;margin-top:5px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="section-eyebrow">Get in Touch</div>
+      <h2 class="section-title">Let's Build Something <em>Powerful</em> Together</h2>
+      <p class="section-desc">Whether it's a corporate workshop, sales team training, or personal coaching — reach out and let's talk about what you need.</p>
+      <div class="contact-channels">
+        <a href="tel:7219889888" class="ch-item">
+          <div class="ch-icon">📞</div>
+          <div>
+            <div class="ch-label">Call / WhatsApp</div>
+            <div class="ch-val">+91 72198 89888</div>
+          </div>
+        </a>
+        <a href="mailto:ankitatrainer1304@gmail.com" class="ch-item">
+          <div class="ch-icon">✉️</div>
+          <div>
+            <div class="ch-label">Email</div>
+            <div class="ch-val">ankitatrainer1304@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/ankitajainsaleshrfacilitator" target="_blank" class="ch-item">
+          <div class="ch-icon">💼</div>
+          <div>
+            <div class="ch-label">LinkedIn</div>
+            <div class="ch-val">ankitajainsaleshrfacilitator</div>
+          </div>
+        </a>
+        <div class="ch-item">
+          <div class="ch-icon">📍</div>
+          <div>
+            <div class="ch-label">Location</div>
+            <div class="ch-val">Pune, Maharashtra · Pan-India & Online</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form reveal">
+      <div class="form-row">
+        <div class="fg">
+          <label>Your Name *</label>
+          <input type="text" placeholder="Priya Sharma">
+        </div>
+        <div class="fg">
+          <label>Company / Organisation</label>
+          <input type="text" placeholder="Your Company">
+        </div>
+      </div>
+      <div class="fg">
+        <label>Email *</label>
+        <input type="email" placeholder="priya@company.com">
+      </div>
+      <div class="fg">
+        <label>Phone / WhatsApp</label>
+        <input type="tel" placeholder="+91 98765 43210">
+      </div>
+      <div class="fg">
+        <label>I'm Interested In</label>
+        <select>
+          <option value="">Select a program</option>
+          <option>Sales Communication Mastery</option>
+          <option>Leadership & Behaviour Coaching</option>
+          <option>Soft Skills for Corporate Teams</option>
+          <option>1-on-1 Coaching</option>
+          <option>Keynote / Event Speaking</option>
+          <option>Custom Program</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Message</label>
+        <textarea placeholder="Tell me about your team, goals, or what you'd like to work on..."></textarea>
+      </div>
+      <button class="btn-send" onclick="handleSend(this)">
+        Send Message &nbsp;→
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Ankita<span>.</span></div>
+  <div class="footer-copy">© 2025 Ankita · ICF Certified Communication & Behaviour Coach · All rights reserved.</div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#programs">Programs</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<div class="sticky-ring">
+  <a href="tel:7219889888" class="sticky-btn" title="Call Ankita">📞</a>
+</div>
+
+<script>
+  // NAV
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+  // MORPH
+  const morphWords = ['Impact.', 'Influence.', 'Clarity.', 'Purpose.', 'Results.'];
+  let mi = 0;
+  const mEl = document.getElementById('morphWord');
+  setInterval(() => {
+    mEl.style.opacity = '0'; mEl.style.transform = 'translateY(10px)';
+    setTimeout(() => {
+      mi = (mi + 1) % morphWords.length;
+      mEl.textContent = morphWords[mi];
+      mEl.style.opacity = '1'; mEl.style.transform = 'translateY(0)';
+    }, 350);
+  }, 2600);
+
+  // COUNTER
+  const counters = document.querySelectorAll('[data-count]');
+  const countObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = +el.dataset.count;
+      let cur = 0; const step = target / 55;
+      const t = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = Math.floor(cur) + '+';
+        if (cur >= target) clearInterval(t);
+      }, 22);
+      countObs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(el => countObs.observe(el));
+
+  // REVEAL
+  const reveals = document.querySelectorAll('.reveal');
+  const revObs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 70);
+        revObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => revObs.observe(el));
+
+  // FORM
+  function handleSend(btn) {
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = '#2D6A4F';
+    setTimeout(() => {
+      btn.textContent = 'Send Message  →';
+      btn.style.background = '';
+    }, 3000);
+  }
+</script>
+</body>
+</html>
